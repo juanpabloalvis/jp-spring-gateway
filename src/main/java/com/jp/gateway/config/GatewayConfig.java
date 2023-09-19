@@ -44,17 +44,19 @@ public class GatewayConfig {
         return builder.routes()
                 .route(r -> r.path("/api/v1/dragonball/*").uri("lb://JP-OTHER-MS"))
                 .route(r -> r.path("/api/v1/got/*").uri("lb://JP-ANOTHER-MS"))
+                .route(r -> r.path("/api/v1/failover/dragonball/*").uri("lb://JP-FAILOVER-MS"))
 
                 // Aquí enrutamos a // application-name que està definido en la uri de eureka: lb://JP-CONFIG,
                 .route(r -> r.path("/application-name")
                         // colocamos un filtro, y en caso de falla, vamos a hacer un 'forward' hacia
-                        // el path '/api/v1/dragonball/names' que está definido en eureka: lb://JP-FAILOVER-MS
+                        // el path '/api/v1/failover/dragonball/names' que está definido
+                        // en eureka: lb://JP-FAILOVER-MS más arriba
                         .filters(f -> {
                             f.circuitBreaker(
-                                            c -> c.setName("failoverCB")
-                                                    .setFallbackUri("forward:/api/v1/dragonball/names") // en caso de falla, se va por aquí
-                                                    .setRouteId("dbFailover"))
-                                    .uri("lb://JP-FAILOVER-MS");
+                                    c -> c.setName("failoverCB")
+                                            // en caso de falla, se hace forward a este path, que se definió arriba
+                                            .setFallbackUri("forward:/api/v1/failover/dragonball/names")
+                                            .setRouteId("dbFailover"));
                             return f;
                         }).uri("lb://JP-CONFIG"))
                 .build();
