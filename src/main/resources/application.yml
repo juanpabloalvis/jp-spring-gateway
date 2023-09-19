@@ -1,0 +1,14 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: jp-gateway
+  profiles:
+    active: localhostRouter-withEureka
+#    active: localhostRouter-noEureka # This will be using by calling: http://localhost:9090/api/v1/dragonball/names
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
