@@ -4,7 +4,8 @@ spring:
   application:
     name: jp-gateway
   profiles:
-    active: localhostRouter-withEureka
+    active: localhostRouter-EurekaWithCB
+#    active: localhostRouter-withEureka # This will be using Eureka Server
 #    active: localhostRouter-noEureka # This will be using by calling: http://localhost:9090/api/v1/dragonball/names
 
 management:
