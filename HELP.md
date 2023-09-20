@@ -1,4 +1,10 @@
 # Getting Started
+Start zipkin service to collect logs:
+>docker run -d -p 9411:9411 openzipkin/zipkin
+
+and the URL of the service is:
+> http://localhost:9411/
+
 
 ### Reference Documentation
 For further reference, please consider the following sections:
