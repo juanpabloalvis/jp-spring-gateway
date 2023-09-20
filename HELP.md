@@ -5,6 +5,11 @@ Start zipkin service to collect logs:
 and the URL of the service is:
 > http://localhost:9411/
 
+We start the local service in docker
+>docker run -d -p 9090:9090 prom/prometheus
+
+and it runs in 
+> http://localhost:9090/
 
 ### Reference Documentation
 For further reference, please consider the following sections:
