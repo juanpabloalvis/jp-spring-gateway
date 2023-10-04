@@ -34,6 +34,12 @@ dependencies {
 //	//observability
 //	implementation 'io.micrometer:micrometer-registry-prometheus'
 
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.apache.commons:commons-lang3:3.13.0'
+
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
